@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import styled from "styled-components";
 
-type Props = { keyword: string };
+type Props = { keyword?: string };
 
 const Form = styled.form`
     display: flex;
@@ -34,7 +34,10 @@ function SearchBar({ keyword }: Props) {
 
     const onSubmitHandler = (event: SubmitEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const k = input.trim();
+        let k;
+        if (typeof input === "string") {
+            k = input.trim();
+        }
         if (!k) return;
         navigate(`/search?keyword=${encodeURIComponent(k)}`);
     };
