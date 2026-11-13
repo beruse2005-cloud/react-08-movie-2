@@ -41,7 +41,13 @@ function Detail() {
         fetch(`https://www.omdbapi.com/?apikey=6a0a8eb4&i=${id}&plot=full`)
             .then(res => res.json())
             .then(json => setMovie(json))
-            .catch(err => console.log(err));
+            .catch((err: unknown) => {
+                if (err instanceof Error) {
+                    console.log(err.message);
+                } else {
+                    console.log(err);
+                }
+            });
     }, []);
 
     if (!movie) {

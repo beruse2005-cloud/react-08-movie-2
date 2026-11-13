@@ -38,9 +38,13 @@ function Search() {
         fetch(`https://www.omdbapi.com/?apikey=6a0a8eb4&s=${keyword}`)
             .then(res => res.json())
             .then(json => setList(json.Search))
-            .catch(err => {
-                console.log(err); // 개발자가 개발자 도구에서 에러 분석 내용을 보기 위해서 하는 것
-                setError("검색하는데 오류가 발생하였습니다.");
+            .catch((err: unknown) => {
+                if (err instanceof Error) {
+                    console.log(err.message);
+                } else {
+                    console.log(err); // 개발자가 개발자 도구에서 에러 분석 내용을 보기 위해서 하는 것
+                    setError("검색하는데 오류가 발생하였습니다.");
+                }
             })
             .finally(() => setLoading(false));
     }, [keyword]);
