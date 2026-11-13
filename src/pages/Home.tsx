@@ -1,4 +1,4 @@
-import SearchBar from "../components/SearchBar.jsx";
+import SearchBar from "../components/SearchBar.tsx";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -12,7 +12,7 @@ function Home() {
     return (
         <Container>
             <h1>Movie Search</h1>
-            <SearchBar />
+            <SearchBar keyword={""} />
         </Container>
     );
 }

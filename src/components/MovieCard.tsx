@@ -1,5 +1,10 @@
 import { Link } from "react-router";
 import styled from "styled-components";
+import type { MovieItem } from "../pages/Search.tsx";
+
+type MovieProps = {
+    movie: MovieItem;
+};
 
 const StyledLink = styled(Link)`
     width: 200px;
@@ -23,7 +28,7 @@ const StyledLink = styled(Link)`
     }
 `;
 
-function MovieCard({ movie }) {
+function MovieCard({ movie }: MovieProps) {
     return (
         <StyledLink to={`/detail/${movie.imdbID}`}>
             <img src={movie.Poster} alt={movie.Title} />

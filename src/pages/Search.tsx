@@ -1,9 +1,16 @@
-import { Link, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
-import SearchBar from "../components/SearchBar.jsx";
-import { Container } from "./Home.jsx";
+import SearchBar from "../components/SearchBar.tsx";
+import { Container } from "./Home.tsx";
 import styled from "styled-components";
-import MovieCard from "../components/MovieCard.jsx";
+import MovieCard from "../components/MovieCard.tsx";
+
+export type MovieItem = {
+    imdbID: string;
+    Poster: string;
+    Title: string;
+    Year: string;
+};
 
 const List = styled.div`
     display: flex;
@@ -17,7 +24,7 @@ function Search() {
     const [searchParams] = useSearchParams();
     const keyword = searchParams.get("keyword");
 
-    const [list, setList] = useState([]);
+    const [list, setList] = useState<MovieItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(""); // 화면에 띄울 에러 메세지를 저장할 목적의 state
 
@@ -42,7 +49,7 @@ function Search() {
         <Container>
             <h2>검색 키워드 : {keyword}</h2>
 
-            <SearchBar keyword={keyword} />
+            <SearchBar keyword={keyword || ""} />
 
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}

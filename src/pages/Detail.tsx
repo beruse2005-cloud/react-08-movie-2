@@ -1,7 +1,16 @@
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { Container } from "./Home.jsx";
+import { Container } from "./Home.tsx";
 import styled from "styled-components";
+
+type Movie = {
+    Poster: string;
+    Title: string;
+    Year: string;
+    Genre: string;
+    Director: string;
+    Plot: string;
+};
 
 const BackBtn = styled.button`
     display: block;
@@ -25,7 +34,7 @@ const Plot = styled.p`
 
 function Detail() {
     const { id } = useParams();
-    const [movie, setMovie] = useState(null);
+    const [movie, setMovie] = useState<Movie | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
