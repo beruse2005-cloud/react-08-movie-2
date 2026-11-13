@@ -40,7 +40,7 @@ function Detail() {
     useEffect(() => {
         fetch(`https://www.omdbapi.com/?apikey=6a0a8eb4&i=${id}&plot=full`)
             .then(res => res.json())
-            .then(json => setMovie(json))
+            .then((json:Movie) => setMovie(json))
             .catch((err: unknown) => {
                 if (err instanceof Error) {
                     console.log(err.message);

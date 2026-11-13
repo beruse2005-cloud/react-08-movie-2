@@ -12,6 +12,10 @@ export type MovieItem = {
     Year: string;
 };
 
+type ApiResponse = {
+    Search: MovieItem[];
+}
+
 const List = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -37,7 +41,7 @@ function Search() {
 
         fetch(`https://www.omdbapi.com/?apikey=6a0a8eb4&s=${keyword}`)
             .then(res => res.json())
-            .then(json => setList(json.Search))
+            .then((json: ApiResponse) => setList(json.Search))
             .catch((err: unknown) => {
                 if (err instanceof Error) {
                     console.log(err.message);
